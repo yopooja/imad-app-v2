@@ -2,7 +2,6 @@ console.log('Loaded!');
 
 // changing text
 var element = document.getElementById('main-text');
-element.innerHTML ="New Version ";
 
 //changing imagemove the 
 
