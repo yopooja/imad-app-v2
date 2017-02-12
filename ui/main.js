@@ -11,12 +11,11 @@ button.onclick = function(){
                 var counter = request.responseText;
                 var span = document.getElementById('count');
                 span.innerHTML = counter.toString();
-                
             }
         }//Not done 
     };
     request.open('GET','http://yopooja.imad.hasura-app.io/counter',true);
-    request.send('null');
+    request.send(null);
     //make  the variable  the correct spam
     
 };
