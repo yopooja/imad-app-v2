@@ -16,6 +16,6 @@ button.onclick = function(){
     };
     request.open('GET','http://yopooja.imad.hasura-app.io/counter',true);
     request.send(null);
-    //make  the variable  the correct spam
+    //make  the request
     
 };
