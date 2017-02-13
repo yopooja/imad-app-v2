@@ -42,5 +42,5 @@ submit.onclick = function(){
 };
 var nameInput = document.getElementById('name');
 var name = nameInput.value;
-request.open('GET','http://yopooja.imad.hasura-app.io/'+name,true);
+request.open('GET','http://yopooja.imad.hasura-app.io',true);
 request.send(null);
