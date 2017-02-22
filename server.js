@@ -1,5 +1,5 @@
 var express = require('express');  // express is a library for port handling and http connections
-var morgan = require('morgan');     // morgan is a library for output log - what reuest are comming to server and how we are responding
+var morgan = require('morgan');     // morgan is a library for output log - what request are comming to server and how we are responding
 var path = require('path');
 var Pool = require('pg').Pool;
 
