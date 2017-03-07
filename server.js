@@ -3,7 +3,7 @@ var morgan = require('morgan');     // morgan is a library for output log - what
 var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');  // express library
 
 var config = {
     user: 'yopooja',
@@ -15,7 +15,7 @@ var config = {
 
 var app = express();
 app.use(morgan('combined'));
-app.use(bodyParser.json());
+app.use(bodyParser.json());  // in case u see json content load the req.body content
 
 function createTemplate(data){
     var title = data.title;
@@ -68,6 +68,8 @@ app.get('/hash/:input',function(req,res){
 });
 
 app.post('/create-user',function(req,res){
+   // username ,password
+   //JSON
     var username = req.body.username;
     var password = req.body.password;
     var salt = crypto.getRandomBytes(128).toString('hex');
