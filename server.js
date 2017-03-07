@@ -2,6 +2,7 @@ var express = require('express');  // express is a library for port handling and
 var morgan = require('morgan');     // morgan is a library for output log - what request are comming to server and how we are responding
 var path = require('path');
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
 
 var config = {
     user: 'yopooja',
@@ -53,6 +54,15 @@ function createTemplate(data){
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+function hash(input,salt){
+var hashed = crypto.pbkdf2syn(input,salt,10000,512,'sha512');
+return ['pbkdf2',"10000",salt,hashed.toString('hex')].join('$');
+}
+
+app.get('hash/:input',function(req,res){
+var hashedString = hash(req.params.input, 'this-is-some-random-string');    
 });
 
 var pool = new Pool(config);
