@@ -9,7 +9,6 @@ submit.onclick = function(){
         if(request.readyState === XMLHttpRequest.DONE){
             //Take some action
             if(request.status === 200){
-                console.log('user logged in');
                 alert('logged in successfully');
             }else if(request.status===403){
                 alert('Username/password is incorrect');
@@ -18,11 +17,11 @@ submit.onclick = function(){
             }
         }
     };
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST','http://yopooja.imad.hasura-app.io/login',true);
+    request.setRequestHeader('Context-Type','application/json');
+    request.send(JSON.stringify({username: username,password:password}));
 };
-var username = document.getElementById('username').value;
-var password = document.getElementById('password').value;
-console.log(username);
-console.log(password);
-request.open('POST','http://yopooja.imad.hasura-app.io/login',true);
-request.setRequestHeader('Context-Type','application/json');
-request.send(JSON.stringify({username: username,password:password}));
