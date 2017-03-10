@@ -105,8 +105,10 @@ app.post('/login',function(req,res){
                 //Extract the password
                 var dbString = result.rows[0].password;
                 var salt = dbString.split('$')[2];
-                var hashedpassword = hash(password,salt);
+                var hashedPassword = hash(password,salt);
                 //Create a hash based on password submitted and the original salt
+                res.send('hasedPassword');
+                res.send(hashedPassword.toString());
                 if(hashedPassword === dbString){
                     //Set secession
                     req.session.auth = {userid:result.rows[0].id};                    
