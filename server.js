@@ -64,10 +64,10 @@ app.get('/', function (req, res) {
 
 function hash(input,salt){
     var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
-    return ['pbkdf2',"10000",salt,hashed.toString('hex')].join('$');
+    return ["pbkdf2","10000",salt,hashed.toString('hex')].join('$');
 }
 
-app.get('/hash/:input',function(req,res){
+app.get('/hash/:input', function(req, res){
     var hashedString = hash(req.params.input, 'this-is-some-random-string');    
     res.send(hashedString);
 });
@@ -93,13 +93,13 @@ app.post('/create-user',function(req,res){
 app.post('/login',function(req,res){
     var username = req.body.username;
     var password = req.body.password;
-    alert(username,password);
+    
     pool.query('SELECT * FROM "user" WHERE username = $1',[username],function(err, result){
        if(err){
            res.status(500).send(err.toString());
        }else{
             if(result.rows.length === 0){
-                res.send(403).send('username/password is invalid');
+                res.status(403).send('username/password is invalid');
             }else{
                 //Match the password
                 //Extract the password
@@ -112,7 +112,7 @@ app.post('/login',function(req,res){
                     req.session.auth = {userid:result.rows[0].id};                    
                     res.send('credentials correct');
                 }else{
-                    res.send(403).send('username/password is invald');
+                    res.status(403).send('username/password is invald');
                 }
             }
        } 
