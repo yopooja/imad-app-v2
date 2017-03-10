@@ -110,8 +110,8 @@ app.post('/login',function(req,res){
                 res.send('hasedPassword');
                 if(hashedPassword === dbString){
                     //Set secession
-                    req.session.auth = {userid:result.rows[0].id};                    
-                    res.send('credentials correct');
+                    req.session.auth = {userId:result.rows[0].id};                    
+                    res.status(200).send('credentials correct');
                 }else{
                     res.status(403).send('username/password is invald2');
                 }
@@ -121,8 +121,8 @@ app.post('/login',function(req,res){
 });
 
 app.get('/check-login',function(req,res){
-   if(req.session && req.session.auth && req.session.auth.userid){
-       res.send('You are logged in:'+req.session.auth.userid.toString());
+   if(req.session && req.session.auth && req.session.auth.userId){
+       res.send('You are logged in:'+req.session.auth.userId.toString());
    }else{
        res.send('You are not logged in');
    }
