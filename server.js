@@ -99,7 +99,7 @@ app.post('/login',function(req,res){
            res.status(500).send(err.toString());
        }else{
             if(result.rows.length === 0){
-                res.status(403).send('username/password is invalid');
+                res.status(403).send('username/password is invalid1');
             }else{
                 //Match the password
                 //Extract the password
@@ -108,13 +108,12 @@ app.post('/login',function(req,res){
                 var hashedPassword = hash(password,salt);
                 //Create a hash based on password submitted and the original salt
                 res.send('hasedPassword');
-                res.send(hashedPassword.toString());
                 if(hashedPassword === dbString){
                     //Set secession
                     req.session.auth = {userid:result.rows[0].id};                    
                     res.send('credentials correct');
                 }else{
-                    res.status(403).send('username/password is invald');
+                    res.status(403).send('username/password is invald2');
                 }
             }
        } 
